@@ -1,0 +1,20 @@
+image_width: 640
+image_height: 480
+camera_name: 192.168.1.100
+camera_matrix:
+  rows: 3
+  cols: 3
+  data: [1181.221956756576, 0, 334.8271945796204, 0, 1177.892891376225, 245.1326109540756, 0, 0, 1]
+distortion_model: plumb_bob
+distortion_coefficients:
+  rows: 1
+  cols: 5
+  data: [-0.3299686140300438, 0.1281265093264478, -5.467168096206197e-05, 0.0009749436529300706, 0]
+rectification_matrix:
+  rows: 3
+  cols: 3
+  data: [1, 0, 0, 0, 1, 0, 0, 0, 1]
+projection_matrix:
+  rows: 3
+  cols: 4
+  data: [1151.733642578125, 0, 335.8707458225181, 0, 0, 1161.4609375, 245.2698977672262, 0, 0, 0, 1, 0]
