@@ -6,6 +6,7 @@
 #include <sstream>
 #include "FlyCapture2.h"
 #include "opencv2/highgui/highgui.hpp"
+#include "ros/ros.h"
 
 using namespace std;
 using namespace FlyCapture2;
@@ -49,7 +50,7 @@ bool mGigEGrab::detectCam()
   error = BusManager::DiscoverGigECameras(camInfo, &numCameras);
   if (error != PGRERROR_OK)
   {
-    PrintError(error);
+    ROS_WARN(error.GetDescription());
     return camOK;
   }
 
@@ -91,7 +92,7 @@ bool mGigEGrab::selectCam()
   error=busMgr.GetCameraFromIPAddress(ipAddress,&guid);
   if (error != PGRERROR_OK)
   {
-    PrintError(error);
+    ROS_WARN(error.GetDescription());
     return camOK;
   }
 
@@ -107,7 +108,7 @@ bool mGigEGrab::openCam()
   error = cam.Connect(&guid);
   if (error != PGRERROR_OK)
   {
-    PrintError(error);
+    ROS_WARN(error.GetDescription());
     return camOK;
   }
 
@@ -115,7 +116,7 @@ bool mGigEGrab::openCam()
   error = cam.GetGigEImageSettingsInfo(&imageSettingsInfo);
   if (error != PGRERROR_OK)
   {
-    PrintError(error);
+    ROS_WARN(error.GetDescription());
     return camOK;
   }
 
@@ -129,7 +130,7 @@ bool mGigEGrab::openCam()
   error = cam.SetGigEImageSettings(&imageSettings);
   if (error != PGRERROR_OK)
   {
-    PrintError(error);
+    ROS_WARN(error.GetDescription());
     return camOK;
   }
 
@@ -138,7 +139,7 @@ bool mGigEGrab::openCam()
   error = cam.StartCapture();
   if (error != PGRERROR_OK)
   {
-    PrintError(error);
+    ROS_WARN(error.GetDescription());
     return camOK;
   }
 
@@ -155,7 +156,7 @@ bool mGigEGrab::RetrieveBGR(cv::Mat &mat)
   error = cam.RetrieveBuffer(&rawImage);
   if (error != PGRERROR_OK)
   {
-    PrintError(error);
+    ROS_WARN(error.GetDescription());
     return camOK;
   }
 
@@ -164,7 +165,7 @@ bool mGigEGrab::RetrieveBGR(cv::Mat &mat)
   error = rawImage.Convert(PIXEL_FORMAT_BGR, &convertedImage);
   if (error != PGRERROR_OK)
   {
-    PrintError(error);
+    ROS_WARN(error.GetDescription());
     return camOK;
   }
 
@@ -183,14 +184,14 @@ bool mGigEGrab::closeCam()
   error = cam.StopCapture();
   if (error != PGRERROR_OK)
   {
-    PrintError(error);
+    ROS_WARN(error.GetDescription());
     return camOK;
   }
 
   error = cam.Disconnect();
   if (error != PGRERROR_OK)
   {
-    PrintError(error);
+    ROS_WARN(error.GetDescription());
     return camOK;
   }
 
