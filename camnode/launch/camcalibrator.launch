@@ -1,8 +1,6 @@
 <launch>
 
     <arg name="camera_name" default="192.168.1.100" />
-    <arg name="--size" default="11x8" />
-    <arg name="--square" default="0.03" />
 
     <node name="camnode" pkg="camnode" type="camnode" output="screen" >
         <param name="image_width" value="640" />
