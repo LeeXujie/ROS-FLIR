@@ -8,7 +8,7 @@
         <param name="image_height" value="480" />
         <param name="camera_frame_id" value="$(arg camera_name)" />
         <param name="camera_name" value="$(arg camera_name)" />
-        <param name="camera_info_url" value="file:///home/jay/ros_workspace/src/camnode/camera_info/${NAME}.yaml" />
+        <param name="camera_info_url" value="file://$(find camnode)/camera_info/${NAME}.yaml" />
     </node>
 
 </launch>
